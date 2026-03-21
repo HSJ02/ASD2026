@@ -20,3 +20,8 @@
 
 ## gui.py
 hw02를 GUI로 구현했습니다.
+
+# hw04
+
+## bmi.py
+bmi를 측정하는 걸 html 구현했습니다. 
