@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% if posts|length > 0 %}
+{% for post in posts %}
+<div>
+    <p> 제목 : {{ post.title }}</p>
+    <p> 내용 : {{ post.content }}</p>
+</div>
+{% endfor %}
+{% else %}
+게시물이 없습니다.
+{% endif %}
+
+<!-- <div>
+<p>title : 제목 1</p>
+<p>content : 내용 1</p>
+</div>
+
+<div>
+<p>title : 제목 2</p>
+<p>content : 내용 2</p>
+</div>
+
+<div>
+<p>title : 제목 3</p>
+<p>content : 내용 3</p>
+</div> -->
+
+{% endblock %}
