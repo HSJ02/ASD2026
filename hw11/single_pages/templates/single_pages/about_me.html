@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>황승재</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            color: #222;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            z-index: 10;
+        }
+
+        nav a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .main {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin: 0 auto 25px;
+        }
+
+        h1 {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 18px;
+        }
+
+        section {
+            width: 80%;
+            max-width: 900px;
+            margin: 100px auto;
+            background-color: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 25px;
+        }
+
+        .project {
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/todo/">Todo</a>
+    </nav>
+
+    <div class="main">
+        <div>
+            <img class="profile-img" src="{% static 'profile.jpg' %}">
+            <h1>황승재</h1>
+            <p class="subtitle">SmartFarm · Workout · Writing</p>
+        </div>
+    </div>
+
+    <section>
+        <h2>About</h2>
+        <p>
+            전북대학교 스마트팜학과 대표 멋쟁이
+            제 인생에 책임지며 살아가보려고 아등바등 삽니다.
+        </p>
+    </section>
+
+    <section>
+        <h2>content</h2>
+
+        <div class="project">
+            <h3>blog</h3>
+            <p>점차 발전시켜 나가게 될 블로그!</p>
+        </div>
+
+        <div class="project">
+            <h3>Todo</h3>
+            <p>todo_list로 갓생 한번 살아볼까요?</p>
+        </div>
+
+    </section>
+
+    <section>
+        <h2>Contact</h2>
+        <p>Phone : 010-3306-4696</p>
+        <p>Email : hwangsj7788@gmail.com</p>
+        <p>Insta ID : hello.imyello</p>
+    </section>
+
+    <footer>
+        © σπλαγχνίζομαι for my life
+    </footer>
+
+</body>
+</html>

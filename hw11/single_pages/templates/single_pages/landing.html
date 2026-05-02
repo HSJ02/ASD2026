@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>황승재입니다!</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f8fafc, #eef2f7);
+            color: #222;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: white;
+            padding: 18px 0;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            z-index: 10;
+        }
+
+        nav a {
+            margin: 0 22px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #0077ff;
+        }
+
+        .main {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .card {
+            background-color: white;
+            padding: 55px 70px;
+            border-radius: 28px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        .profile-img {
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            font-size: 42px;
+            margin: 10px 0;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 28px;
+        }
+
+        .button-box a {
+            display: inline-block;
+            margin: 8px;
+            padding: 12px 22px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+            background-color: #222;
+        }
+
+        .button-box a:hover {
+            background-color: #0077ff;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="/blog/">Blog</a>
+        <a href="/about_me/">About me</a>
+        <a href="/todo/">Todo</a>
+    </nav>
+
+    <div class="main">
+        <div class="card">
+            <img class="profile-img" src="{% static 'profile2.jpg' %}">
+
+            <h1>오셨군요!</h1>
+            <p class="subtitle">황승재의 Django에 오신걸 환영해요</p>
+
+            <div class="button-box">
+                <a href="/blog/">Blog 보기</a>
+                <a href="/about_me/">About me</a>
+                <a href="/todo/">Todo List</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

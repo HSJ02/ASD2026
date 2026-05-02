@@ -1,0 +1,282 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f6f8;
+            color: #222;
+        }
+
+        nav {
+            background-color: white;
+            padding: 18px 0;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        nav a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #0077ff;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 70px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 36px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 26px;
+        }
+
+        .sub-text {
+            text-align: center;
+            color: #666;
+            margin-bottom: 35px;
+            line-height: 1.7;
+        }
+
+        form.add-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        form.add-form input {
+            flex: 1;
+            padding: 14px 16px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 14px;
+            outline: none;
+        }
+
+        form.add-form input:focus {
+            border-color: #0077ff;
+        }
+
+        form.add-form button {
+            padding: 14px 22px;
+            background: #222;
+            color: white;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        form.add-form button:hover {
+            background: #0077ff;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px;
+            margin-bottom: 12px;
+            background-color: #fafafa;
+            border: 1px solid #eee;
+            border-radius: 16px;
+        }
+
+        li.done {
+            background-color: #f0f0f0;
+        }
+
+        li.done span {
+            text-decoration: line-through;
+            color: #aaa;
+        }
+
+        span {
+            flex: 1;
+            font-size: 16px;
+        }
+
+        .toggle-btn,
+        .delete-btn {
+            padding: 9px 13px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+        }
+
+        .toggle-btn {
+            background: #2196F3;
+        }
+
+        .delete-btn {
+            background: #f44336;
+        }
+
+        .empty {
+            text-align: center;
+            color: #777;
+            justify-content: center;
+        }
+
+        .time-plan {
+            margin-top: 10px;
+        }
+
+        .time-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .time {
+            width: 70px;
+            padding: 10px;
+            background: #222;
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .time-row input {
+            flex: 1;
+            padding: 12px 14px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .time-row input:focus {
+            border-color: #0077ff;
+        }
+        .write-box {
+            max-width: 720px;
+            margin: 0 auto 35px;
+            text-align: center;
+        }
+
+        .write-box img {
+            width: 100%;
+            max-width: 1000px;
+            border-radius: 18px;
+            opacity: 0.9;
+            display: block;
+            margin: 0 auto;
+            transition: 0.3s;
+        }
+
+        .write-box img:hover {
+            transform: scale(1.03);
+        }
+        
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/about_me/">About me</a>
+    </nav>
+
+    <div class="container">
+
+        <div class="card">
+            <h1>To Do List</h1>
+            <p class="sub-text">
+                하루를 계획하는 것은 하루를 경영하는 것이다.<br>
+                우리는 하루 경영을 통해 인생을 이끌어갈 수 있는 힘을 기른다.
+            </p>
+
+            <form class="add-form" method="post" action="{% url 'todo:todo_add' %}">
+                {% csrf_token %}
+                <input type="text" name="title" placeholder="할 일을 입력하세요" required>
+                <button type="submit">추가</button>
+            </form>
+
+            <ul>
+                {% for todo in todos %}
+                <li class="{% if todo.completed %}done{% endif %}">
+                    <span>{{ todo.title }}</span>
+
+                    <form method="post" action="{% url 'todo:todo_toggle' todo.pk %}">
+                        {% csrf_token %}
+                        <button class="toggle-btn" type="submit">
+                            {% if todo.completed %}되돌리기{% else %}완료{% endif %}
+                        </button>
+                    </form>
+
+                    <form method="post" action="{% url 'todo:todo_delete' todo.pk %}">
+                        {% csrf_token %}
+                        <button class="delete-btn" type="submit">삭제</button>
+                    </form>
+                </li>
+                {% empty %}
+                <li class="empty">아직 할 일이 없군요. 뭐부터 할지 정해보세요!</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="write-box">
+            <img src="{% static 'write.png' %}" alt="writing">
+        </div>
+        <div class="card">
+            <h2>Daily Plan</h2>
+
+            <div class="time-plan">
+                <div class="time-row"><div class="time">08:00</div><input type="text" placeholder="할 일을 적어주세요"></div>
+                <div class="time-row"><div class="time">09:00</div><input type="text" placeholder=""></div>
+                <div class="time-row"><div class="time">10:00</div><input type="text" placeholder=""></div>
+                <div class="time-row"><div class="time">11:00</div><input type="text" placeholder=""></div>
+                <div class="time-row"><div class="time">12:00</div><input type="text" placeholder="하루 절반 갔네, 고생했어요"></div>
+                <div class="time-row"><div class="time">13:00</div><input type="text" placeholder=""></div>
+                <div class="time-row"><div class="time">14:00</div><input type="text" placeholder=""></div>
+                <div class="time-row"><div class="time">15:00</div><input type="text" placeholder=""></div>
+                <div class="time-row"><div class="time">16:00</div><input type="text" placeholder=""></div>
+                <div class="time-row"><div class="time">17:00</div><input type="text" placeholder=""></div>
+                <div class="time-row"><div class="time">18:00</div><input type="text" placeholder="밥은 제때 챙겨드실 거죠?"></div>
+                <div class="time-row"><div class="time">19:00</div><input type="text" placeholder=""></div>
+                <div class="time-row"><div class="time">20:00</div><input type="text" placeholder=""></div>
+                <div class="time-row"><div class="time">21:00</div><input type="text" placeholder=""></div>
+                <div class="time-row"><div class="time">22:00</div><input type="text" placeholder=""></div>
+                <div class="time-row"><div class="time">23:00</div><input type="text" placeholder="아자 아자 밤은 우리의 것!"></div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
