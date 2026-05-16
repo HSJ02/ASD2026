@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>DAILYLIFE</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f6f8;
+            color: #222;
+        }
+
+        nav {
+            background-color: white;
+            padding: 18px 0;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        nav a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #0077ff;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 70px auto;
+            padding: 0 20px;
+        }
+
+        .post-card {
+            background-color: white;
+            padding: 45px;
+            border-radius: 24px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+        }
+
+        .category {
+            display: inline-block;
+            background-color: #222;
+            color: white;
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 38px;
+            margin-top: 0;
+        }
+
+        .date {
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .content {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            color: #0077ff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/about_me/">About me</a>
+        <a href="/todo/">Todo</a>
+    </nav>
+
+    <div class="container">
+        <div class="post-card">
+            <span class="category">Life</span>
+            <h1>DAILYLIFE</h1>
+            <p class="date">기존 블로그 게시물</p>
+
+            <div class="content">
+                <p>
+                    선명한 기억보다 흐릿한 기록을 납깁니다.
+                </p>
+                <p>
+                    평범한 하루 안에서도 배울 수 있는 것들이 많다고 생각합니다.
+                    또한 그 일상이 나를 구성하는 기록이 됩니다. 그치요..?
+                </p>
+                <p>
+                    당신의 하루는 어떠셨습니까?
+                </p>
+            </div>
+
+            <a class="back" href="/blog/">목록으로 돌아가기</a>
+        </div>
+    </div>
+</body>
+</html>
